@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Price</th>
+            <th scope="col">Stops</th>
+        </tr>
+        </thead>
+        {% for item in results %}
+        <tbody>
+        <tr>
+            <th scope="row">
+                <h2><a href="{{item.link}}" class="badge badge-primary">€{{item.price}}</a></h2>
+            </th>
+
+
+            <td>
+                {% if item.country_1 %}{{ item.country_1 }} <br> {% endif %}
+
+                {% if item.country_2 %}{{ item.country_2 }} <br> {% endif %}
+
+                {% if item.country_3 %}{{ item.country_3 }} <br> {% endif %}
+
+                {% if item.country_4 %}{{ item.country_4 }} <br> {% endif %}
+
+                {% if item.country_5 %}{{ item.country_5 }} <br> {% endif %}
+
+                {% if item.country_6 %}{{ item.country_6 }} <br> {% endif %}
+
+                {% if item.country_7 %}{{ item.country_7 }} <br> {% endif %}
+
+                {% if item.country_8 %}{{ item.country_8 }} <br> {% endif %}
+
+                {% if item.country_9 %}{{ item.country_9 }} <br> {% endif %}
+
+                {% if item.country_10 %}{{ item.country_10 }}{% endif %}
+
+            </td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
+
+# Add here results of planned Trips if exist or Add upcoming Trips

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div>
+                <h2> Plan a New Trip </h2>
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                        <div class="col-2">
+                            {{ form.fly_from }}
+                            {{ form.fly_from.label }}
+                            <br>
+                            {{ form.fly_to }} {{ form.fly_to.label }}
+                            <br>
+                            {{ form.stops }} {{ form.stops.label }}
+                            <br>
+                            {{ form.budget }} {{ form.budget.label }}
+                        </div>
+                        <div class="col 2">
+                            {{ form.date_from }} {{ form.date_from.label }}
+                            <br>
+                            {{ form.date_to }} {{ form.date_to.label }}
+                            <br>
+                            {{ form.planner }} {{ form.planner.label }}
+                            <br>
+                        </div>
+                    </div>
+                        {{ form.submit }}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col">
+            <h2> Current Trips </h2>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope=”col”>From</th>
+                    <th scope=”col”>To</th>
+                    <th scope=”col”>Departing</th>
+                    <th scope=”col”>Returning</th>
+                    <th scope=”col”># Stops</th>
+                    <th scope=”col”>Budget</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for trip in upcoming_trips %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ trip.fly_from }}</td>
+                    <td>{{ trip.fly_to }}</td>
+                    <td>{{ trip.date_from }}</td>
+                    <td>{{ trip.date_to }}</td>
+                    <td>{{ trip.stops }}</td>
+                    <td>€{{ trip.budget }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
