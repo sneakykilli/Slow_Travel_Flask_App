@@ -2,50 +2,126 @@
 
 {% block content %}
 
-<div class="table-responsive">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Price</th>
-            <th scope="col">Stops</th>
-        </tr>
-        </thead>
-        {% for item in results %}
-        <tbody>
-        <tr>
-            <th scope="row">
-                <h2><a href="{{item.link}}" class="badge badge-primary">€{{item.price}}</a></h2>
-            </th>
+<div class="col-md-12 landing-holder">
+    {% for key, values in processed_results.items() %}
+    {% if values %}
 
+    <div class="row" style="color:grey;">
+        <div class="col-md-3" style="align-items: center; justify-items:center; padding-left:2%">
+            <div class="card" style="margin:2%;">
+                <div class="image-container">
+            <img src="static/pk-sm-{{ loop.index }}.png" class="card-img-top card-img-max-height" style="object-position: 50% 40%;" alt="...">
+                </div>
+                <h5 class="card-title" style="text-align: center;">
+                    {{ upcoming_trips[loop.index0].fly_from.split(',')[0] }} ✈️
+                    {{ upcoming_trips[loop.index0].fly_to.split(',')[0] }} {{ key }} </h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Leaving: {{ upcoming_trips[loop.index0].date_from }} </li>
+                <li class="list-group-item">Returning: {{ upcoming_trips[loop.index0].date_to }} </li>
+                <li class="list-group-item">Budget: €{{ upcoming_trips[loop.index0].budget }} </li>
+            </ul>
+            <div class="card-body" style="text-align: center;">
+                <h2><a href="{{ url_for('update', id=key) }}" class="badge badge-primary">Edit</a></h2>
+            </div>
+                </div>
+        </div>
 
-            <td>
-                {% if item.country_1 %}{{ item.country_1 }} <br> {% endif %}
+        <div class="col-md-7">
+            <div class="rounded-3" style="max-height: 50vh; overflow-y: auto; border: 0.5px solid #dee2e6; margin:1%;">
+                <table class="table table-borderless table-sm align-middle" style="color:grey;">
+                    <thead class="table-light">
+                    <tr>
+                        <th style="justify-content: center; align-items: center; text-align: center">Price</th>
+                        <th style="justify-content: center; align-items: center; text-align: left">Visiting</th>
+                        <th>Travel Time</th>
+                        <th>Booking Link</th>
+                    </tr>
+                    </thead>
+                    {% for value in values %}
+                    <tbody>
+                    <tr>
+                        <td style="justify-content: center; align-items: center; text-align: center">€{{ value.price
+                            }}
+                        </td>
+                        <td style="justify-content: center; align-items: center; text-align: left">
+                            {% if value.country_1 %}
+                            <li> {{ value.city_1 }}, {{ value.country_1 }} <br></li>
+                            {% endif %}
+                            {% if value.country_2 %}
+                            <li> {{ value.city_2 }}, {{ value.country_2 }} <br></li>
+                            {% endif %}
+                            {% if value.country_3 %}
+                            <li> {{ value.city_3 }}, {{ value.country_3 }} <br></li>
+                            {% endif %}
+                            {% if value.country_4 %}
+                            <li> {{ value.city_4 }}, {{ value.country_4 }} <br></li>
+                            {% endif %}
+                            {% if value.country_5 %}
+                            <li> {{ value.city_5 }}, {{ value.country_5 }} <br></li>
+                            {% endif %}
+                            {% if value.country_6 %}
+                            <li> {{ value.city_6 }}, {{ value.country_6 }} <br></li>
+                            {% endif %}
+                            {% if value.country_7 %}
+                            <li> {{ value.city_7 }}, {{ value.country_7 }} <br></li>
+                            {% endif %}
+                            {% if value.country_8 %}
+                            <li> {{ value.city_8 }}, {{ value.country_8 }} <br></li>
+                            {% endif %}
+                            {% if value.country_9 %}
+                            <li> {{ value.city_9 }}, {{ value.country_9 }} <br></li>
+                            {% endif %}
+                            {% if value.country_10 %}
+                            <li> {{ value.city_10 }}, {{ value.country_10 }} <br></li>
+                            {% endif %}
+                        </td>
+                        <td style="justify-content: center; align-items: center; text-align: left">
+                            {% if value.travel_time_1 %}
+                            <li> {{ value.travel_time_1 | round | int }} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_2 %}
+                            <li> {{ value.travel_time_2 | round | int }} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_3 %}
+                            <li> {{ value.travel_time_3 | round | int }} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_4 %}
+                            <li> {{ value.travel_time_4 | round | int }} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_5 %}
+                            <li> {{ value.travel_time_5 | round | int}} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_6 %}
+                            <li> {{ value.travel_time_6 | round | int}} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_7 %}
+                            <li> {{ value.travel_time_7 | round | int}} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_8 %}
+                            <li> {{ value.travel_time_8 | round | int}} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_9 %}
+                            <li> {{ value.travel_time_9 | round | int}} Hr <br></li>
+                            {% endif %}
+                            {% if value.travel_time_10 %}
+                            <li> {{ value.travel_time_10 | round | int}} Hr <br></li>
+                            {% endif %}
 
-                {% if item.country_2 %}{{ item.country_2 }} <br> {% endif %}
-
-                {% if item.country_3 %}{{ item.country_3 }} <br> {% endif %}
-
-                {% if item.country_4 %}{{ item.country_4 }} <br> {% endif %}
-
-                {% if item.country_5 %}{{ item.country_5 }} <br> {% endif %}
-
-                {% if item.country_6 %}{{ item.country_6 }} <br> {% endif %}
-
-                {% if item.country_7 %}{{ item.country_7 }} <br> {% endif %}
-
-                {% if item.country_8 %}{{ item.country_8 }} <br> {% endif %}
-
-                {% if item.country_9 %}{{ item.country_9 }} <br> {% endif %}
-
-                {% if item.country_10 %}{{ item.country_10 }}{% endif %}
-
-            </td>
-        </tr>
-        </tbody>
-        {% endfor %}
-    </table>
+                        </td>
+                        <td><h2><a href="{{value.link}}" class="badge badge-primary">Book Now</a></h2></td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
 </div>
 
+
 {% endblock %}
+
 
 # Add here results of planned Trips if exist or Add upcoming Trips

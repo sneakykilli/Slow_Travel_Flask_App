@@ -8,8 +8,8 @@ class RegistrationForm(FlaskForm):
     # username = StringField('Username', validators=[DataRequired()])
     email = StringField('email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    # password2 = PasswordField(
+    #     'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
@@ -17,11 +17,11 @@ class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
-    submit = SubmitField('Sign In')
+    submit = SubmitField('Login')
 
 class DestinationForm(FlaskForm):
-    fly_from = StringField('Start City', validators=[DataRequired()])
-    fly_to = StringField('End City', validators=[DataRequired()])
+    fly_from = StringField('Start City', validators=[DataRequired()], render_kw={"id": "fly_from_input", "autocomplete": "off"})
+    fly_to = StringField('End City', validators=[DataRequired()], render_kw={"id": "fly_from_input", "autocomplete": "off"})
     date_from = DateField('Earliest Departure', validators=[DataRequired()])
     date_to = DateField('Arrival Date', validators=[DataRequired()])
     stops = IntegerField('Num of Stops', validators=[DataRequired()])
@@ -40,3 +40,6 @@ class DestinationForm(FlaskForm):
 
 
 print(datetime.utcnow())
+
+google_maps_api = "AIzaSyCez7u0ZtXu1S59kLCxW50pgpL27Beqhhc"
+

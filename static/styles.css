@@ -1,0 +1,103 @@
+.table-wrapper {
+  max-height: 300px;
+  overflow-y: auto;
+}
+#register-img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 992px) {
+  .offset-md-3 {
+    margin-left: 0;
+  }
+}
+
+.form_labels {
+text-transform: capitalize;
+font-size: 25px;
+font-family: Arial, sans-serif;
+width: 110px;
+}
+
+.form_control {
+}
+
+.bg-body-tertiary {
+background: #E3F6FF;
+}
+
+.rounded-3 {
+border-radius: 10px;
+}
+
+
+.text-lg-start {
+color: grey;
+}
+
+.navbar {
+background: #E3F6FF;
+font-family: "Arial", sans-serif;
+border-radius: 10px;
+border: 0.5px solid #dee2e6;
+}
+
+.btn{
+font-family: "Arial", sans-serif;
+padding-left: 20px;
+padding-right: 20px;
+margin-right: 8px;
+margin-left: 8px;
+font-weight: bold;
+border-width: 1.5px;
+}
+
+.trip-form {
+margin:2%;
+background: #E3F6FF;
+justify-content: center;
+align-items: center;
+border: 0.5px solid #dee2e6;
+}
+
+.trips-dash {
+margin:2%;
+background: #E3F6FF;
+justify-content: center;
+align-items: center;
+border: 0.5px solid #dee2e6;
+}
+
+.update-holder {
+margin:2%;
+background: #E3F6FF;
+justify-content: center;
+align-items: center;
+border: 0.5px solid #dee2e6;
+}
+
+.trip-card{
+margin:2%;
+background: #E3F6FF;
+justify-content: center;
+align-items: center;
+border: 0.5px solid #dee2e6;
+}
+
+.card-title{
+padding: 4%;
+}
+.card-img-max-height {
+    max-height: 15vh;
+    object-fit: cover;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center; /* Adjust the value to change horizontal alignment */
+    align-items: flex-start; /* Adjust the value to change vertical alignment */
+    height: 100%; /* Ensure the container takes up the full height of the card */
+    overflow: hidden; /* Hide any overflow to prevent scrolling */
+    margin-bottom: -15px; /* Adjust the negative margin to push the image up */
+}

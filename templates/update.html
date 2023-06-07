@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-md-12">
+    <div class="col-md-8 update-holder rounded-3 bg-body-tertiary text-center mx-auto">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class="flash-messages" style="color: red;">
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% endwith %}
+                <h1 style="margin: 5%; color: #0d6efd; font-weight: bold;"> Update a Trip </h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-floating">
+
+                {{ form.fly_from(class_="form-control", value=trip_to_update.fly_from) }}
+                {{ form.fly_from.label(for_="fly_from", style="color:grey; margin:1%") }}
+                <br>
+                {{ form.fly_to(class_="form-control", id="fly_to_input", value=trip_to_update.fly_to) }}
+                {{ form.fly_to.label(for_="fly_to", style="color:grey; margin:1%") }}
+                <br>
+                {{ form.stops(class_="form-control", value=trip_to_update.stops) }}
+                {{ form.stops.label(for_="stops", style="color:grey; margin:1%") }}
+                <br>
+                {{ form.budget(class_="form-control", value=trip_to_update.budget) }}
+                {{ form.budget.label(for_="budget", style="color:grey; margin:1%") }}
+            </div>
+            <div class="col-md-6 form-floating">
+                {{ form.date_from(class_="form-control", value=trip_to_update.date_from) }}
+                {{ form.date_from.label(for_="date_from", style="color:grey; margin:1%") }}
+                <br>
+                {{ form.date_to(class_="form-control", value=trip_to_update.date_to) }}
+                {{ form.date_to.label(for_="date_to", style="color:grey; margin:1%") }}
+                <br>
+                {{ form.planner(class_="form-control", value=trip_to_update.planner) }}
+                {{ form.planner.label(for_="planner", style="color:grey; margin:1%") }}
+            </div>
+            {{ form.submit(class_="w-100 btn btn-lg btn-primary", type="submit", style="margin:3%; ") }}
+
+        </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

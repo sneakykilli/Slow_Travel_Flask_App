@@ -1,39 +1,52 @@
 {% extends "base.html" %}
 
-{% block content %}<center>
-	<h1 style="color:red">Register</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=32) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=32) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password2.label }}<br>
-            {{ form.password2(size=32) }}<br>
-            {% for error in form.password2.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
-</center>
-    
+{% block content %}
+
+<div class="container col-xl-12 col-xxl-8 px-5 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-6 col-lg-6 d-flex flex-column align-items-center justify-content-center rounded-3 px-3 px-md-4"
+             style="background-image: url('static/pk-sm-1.png'); background-size: 85% 150%; height: 48vh; background-position: center center;">
+            <div class="text-center">
+                <h1 class="display-4 fw-bold lh-1 text-body-emphasis mb-3" style="color: #0d6efd;">Pack a Bag</h1>
+            </div>
+            <div class="text-center">
+                <p class="fs-4" style="color: #0d6efd;">Sign up to for the best Daily Flight deals for your road less
+                    travelled.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-6 mx-auto col-lg-5 px-5 px-md-4">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="flash-messages" style="color: green">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="post">
+                {{ form.hidden_tag() }}
+                <div class="form-floating mb-3">
+                    {{ form.email(class_="form-control", id="floatingEmail", placeholder="name@example.com") }}
+                    {{ form.email.label(for_="floatingEmail", style="color: grey") }}
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.password(class_="form-control", id="floatingPassword", placeholder="Password") }}
+                    {{ form.password.label(for_="floatingPassword", style="color: grey") }}
+                </div>
+                {{ form.submit(class_="w-100 btn btn-lg btn-primary", type="submit") }}
+                <hr class="my-4">
+                <a href="{{ url_for('login')}}" class="w-100 btn btn-lg btn-primary">Login</a>
+                <small class="text-body-secondary" style="color: grey">By clicking Register, you agree to the terms of
+                    use.</small>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}
+
+
+

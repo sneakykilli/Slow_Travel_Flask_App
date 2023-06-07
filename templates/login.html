@@ -1,27 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1> Sign In </h1>
-    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=32) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
-    </form>
-</center>
-    
+
+<div class="container col-12">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-md-10 mx-auto col-lg-5">
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                <ul class="flash-messages" style="color: red;">
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+
+            <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" method="post">
+                <div class="text-center" style="display: flex; align-items: center; justify-content: flex-start;">
+                    <img src="static/pk-login.png" alt="Image"
+                         style="vertical-align: middle; margin-right: 10px; width: 10%; height: 10%;">
+                    <h1 style="color: grey; margin-left: 10px;">Login</h1>
+                </div>
+                <br>
+                {{ form.hidden_tag() }}
+                <div class="form-floating mb-3">
+                    {{ form.email(class_="form-control", id="floatingEmail", placeholder="name@example.com") }}
+                    {{ form.email.label(for_="floatingEmail", style="color: grey") }}
+                </div>
+                <div class="form-floating mb-3">
+                    {{ form.password(class_="form-control", id="floatingPassword", placeholder="Password") }}
+                    {{ form.password.label(for_="floatingPassword", style="color: grey") }}
+                </div>
+                {{ form.submit(class_="w-100 btn btn-lg btn-primary", type="submit") }}
+                <hr class="my-4">
+                <a href="{{ url_for('register')}}" class="w-100 btn btn-lg btn-primary">Register</a>
+                <small class="text-body-secondary" style="color: grey">By clicking Sign In, you agree to the terms of use.</small>
+            </form>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
+
+
+
+

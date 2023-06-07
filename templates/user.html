@@ -1,56 +1,61 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="container">
+
+<div class="col-md-12 user-holder">
     <div class="row">
-        <div class="col">
-            <div>
-                <h2> Plan a New Trip </h2>
-                <form action="" method="post">
-                    {{ form.hidden_tag() }}
-                    <div class="row">
-                        <div class="col-2">
-                            {{ form.fly_from }}
-                            {{ form.fly_from.label }}
-                            <br>
-                            {{ form.fly_to }} {{ form.fly_to.label }}
-                            <br>
-                            {{ form.stops }} {{ form.stops.label }}
-                            <br>
-                            {{ form.budget }} {{ form.budget.label }}
-                        </div>
-                        <div class="col 2">
-                            {{ form.date_from }} {{ form.date_from.label }}
-                            <br>
-                            {{ form.date_to }} {{ form.date_to.label }}
-                            <br>
-                            {{ form.planner }} {{ form.planner.label }}
-                            <br>
-                        </div>
+        <div class="col-md-4 trip-form rounded-3 bg-body-tertiary text-center">
+            <h1 style="margin: 5%; color: #0d6efd; font-weight: bold;"> Plan a New Trip </h1>
+            <form action="{{ url_for('user', email=current_user.email) }}" method="post">
+                {{ form.hidden_tag() }}
+                <div class="row">
+                    <div class="col-6 form-floating">
+                        {{ form.fly_from(class_="form-control", id="fly_from_input") }}
+                        {{ form.fly_from.label(for_="fly_from", style="color:grey; margin:1%") }}
+                        <br>
+                        {{ form.fly_to(class_="form-control", id="fly_to_input") }}
+                        {{ form.fly_to.label(for_="fly_to", style="color:grey; margin:1%") }}
+                        <br>
+                        {{ form.stops(class_="form-control") }}
+                        {{ form.stops.label(for_="stops", style="color:grey; margin:1%") }}
+                        <br>
+                        {{ form.budget(class_="form-control", placeholder="Euro") }}
+                        {{ form.budget.label(for_="stops", style="color:grey; margin:1%") }}
+
                     </div>
-                        {{ form.submit }}
+                    <div class="col-6">
+                        {{ form.date_from(class_="form-control", style="color:grey") }}
+                        {{ form.date_from.label(for_="date_from", style="color:grey; margin:1%") }}
+                        <br>
+                        {{ form.date_to(class_="form-control", style="color:grey") }}
+                        {{ form.date_to.label(for_="date_to", style="color:grey; margin:1%") }}
+                        <br>
+                        {{ form.planner(class_="form-control", style="color:grey") }}
+                        {{ form.planner.label(for_="planner", style="color:grey; margin:1%") }}
+                        <br>
                     </div>
-                </form>
-            </div>
+                </div>
+                {{ form.submit(class_="w-100 btn btn-lg btn-primary mx-auto", type="submit", style="margin: 2% 2% 5% 2%") }}
+            </form>
         </div>
-        <div class="col">
-            <h2> Current Trips </h2>
-            <table class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
+        <div class="col-md-7 trips-dash rounded-3 bg-body-tertiary text-center">
+            <h1 style="margin:5%; display: inline-block; color: #0d6efd; font-weight: bold;"> Upcoming Trips </h1>
+            <table class="table table-bordered border-primary">
+                <thead>
+                <tr style="color: #0d6efd;">
+                    <th scope="col"></th>
                     <th scope=”col”>From</th>
                     <th scope=”col”>To</th>
-                    <th scope=”col”>Departing</th>
-                    <th scope=”col”>Returning</th>
-                    <th scope=”col”># Stops</th>
+                    <th scope=”col”>Depart</th>
+                    <th scope=”col”>Return</th>
+                    <th scope=”col”>Stops</th>
                     <th scope=”col”>Budget</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for trip in upcoming_trips %}
-                <tr>
-                    <th scope="row">{{ loop.index }}</th>
+                <tr style="color: grey; font-weight: bold; text-align: center; vertical-align: middle;">
+                    <td><a href="{{ url_for('update', id=trip.id)}}">Edit</a></td>
                     <td>{{ trip.fly_from }}</td>
                     <td>{{ trip.fly_to }}</td>
                     <td>{{ trip.date_from }}</td>
@@ -64,6 +69,20 @@
         </div>
     </div>
 </div>
+<script src=f"https://maps.googleapis.com/maps/api/js?key={{API_KEY}}&libraries=places"></script>
+<script>
+    function initializeAutocomplete() {
+        var flyFromInput = document.getElementById('fly_from_input');
+        var flyToInput = document.getElementById('fly_to_input');
+        var autocompleteOptions = {
+            types: ['airport']
+        };
+        var flyFromAutocomplete = new google.maps.places.Autocomplete(flyFromInput, autocompleteOptions);
+        var flyToAutocomplete = new google.maps.places.Autocomplete(flyToInput, autocompleteOptions);
+    }
+    google.maps.event.addDomListener(window, 'load', initializeAutocomplete);
+
+</script>
 
 {% endblock %}
 
