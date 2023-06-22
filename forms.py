@@ -40,6 +40,3 @@ class DestinationForm(FlaskForm):
 
 
 print(datetime.utcnow())
-
-google_maps_api = "AIzaSyCez7u0ZtXu1S59kLCxW50pgpL27Beqhhc"
-
